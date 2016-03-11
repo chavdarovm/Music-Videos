@@ -54,14 +54,46 @@
 		23C7D8B61C9356AC00FE77A3 /* MusicVideos */ = {
 			isa = PBXGroup;
 			children = (
-				23C7D8B71C9356AC00FE77A3 /* AppDelegate.swift */,
-				23C7D8B91C9356AC00FE77A3 /* ViewController.swift */,
-				23C7D8BB1C9356AC00FE77A3 /* Main.storyboard */,
-				23C7D8BE1C9356AC00FE77A3 /* Assets.xcassets */,
-				23C7D8C01C9356AC00FE77A3 /* LaunchScreen.storyboard */,
-				23C7D8C31C9356AC00FE77A3 /* Info.plist */,
+				23C7D8C91C93601800FE77A3 /* Model */,
+				23C7D8CA1C93602000FE77A3 /* View */,
+				23C7D8CB1C93603200FE77A3 /* Controller */,
+				23C7D8CC1C93609900FE77A3 /* Supporting Files */,
 			);
 			path = MusicVideos;
+			sourceTree = "<group>";
+		};
+		23C7D8C91C93601800FE77A3 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		23C7D8CA1C93602000FE77A3 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				23C7D8BB1C9356AC00FE77A3 /* Main.storyboard */,
+				23C7D8C01C9356AC00FE77A3 /* LaunchScreen.storyboard */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		23C7D8CB1C93603200FE77A3 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				23C7D8B91C9356AC00FE77A3 /* ViewController.swift */,
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
+		23C7D8CC1C93609900FE77A3 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				23C7D8B71C9356AC00FE77A3 /* AppDelegate.swift */,
+				23C7D8C31C9356AC00FE77A3 /* Info.plist */,
+				23C7D8BE1C9356AC00FE77A3 /* Assets.xcassets */,
+			);
+			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -250,6 +282,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = MusicVideos/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = nica.alabala.MusicVideos;
@@ -261,6 +294,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = MusicVideos/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = nica.alabala.MusicVideos;
