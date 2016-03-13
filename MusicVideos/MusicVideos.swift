@@ -22,6 +22,8 @@ class Videos {
     private var _vLinkToiTunes: String
     private var _vReleaseDte:   String
     
+    var vImageData: NSData?;
+    
     //Make geters
     var vName:          String{ return _vName }
     var vRights:        String{ return _vRights }
