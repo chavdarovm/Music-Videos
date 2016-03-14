@@ -10,10 +10,20 @@ import UIKit
 
 class ViewController: UIViewController {
 
+    @IBOutlet weak var displayLabel: UILabel!
+    var videos = [Videos]()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
     
+        NSNotificationCenter.defaultCenter().addObserver(
+            self,
+            selector: "reachabilityStatusChanged",
+            name: "ReachStatusChanged",
+            object: nil )
+        
+        reachabilityStatusChanged()
+        
         //call API
         let api = APIManager()
         api.loadData(
@@ -25,6 +35,7 @@ class ViewController: UIViewController {
     func didLoadData( videos: [Videos] ) {
     
         print( reachabilityStatus )
+        self.videos = videos
         
         for ( index, item ) in videos.enumerate() {
             print( "\( index ) name - \(item.vName)" )
@@ -32,14 +43,23 @@ class ViewController: UIViewController {
         
     }
     
-//    func didLoadData( result: String ) {
-//        let alert = UIAlertController( title: ( result ), message: nil, preferredStyle: .Alert )
-//        
-//        let okAction = UIAlertAction( title: "OK", style: .Default ) {
-//            action -> Void in
-//        }
-//        
-//        alert.addAction( okAction )
-//        self.presentViewController( alert, animated: true, completion: nil )
-//    }
+    func reachabilityStatusChanged() {
+        switch reachabilityStatus{
+        case NOACCESS: view.backgroundColor = UIColor.redColor()
+            displayLabel.text = "No Internet"
+        case WIFI: view.backgroundColor = UIColor.greenColor()
+            displayLabel.text = "Reachable with WIFI"
+        case WWAN: view.backgroundColor = UIColor.yellowColor()
+            displayLabel.text = "Riachable with Celluliar"
+        default: return
+        }
+    }
+    
+    deinit{
+        NSNotificationCenter.defaultCenter().removeObserver(
+            self,
+            name: "ReachStatusChanged",
+            object: nil
+        )
+    }
 }

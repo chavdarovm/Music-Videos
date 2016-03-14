@@ -13,7 +13,6 @@ class Videos {
     private var _vName:         String
     private var _vRights:       String
     private var _vPrice:        String
-    private var _vCurrency:     String
     private var _vImageUrl:     String
     private var _vArtist:       String
     private var _vVideoUrl:     String
@@ -28,7 +27,6 @@ class Videos {
     var vName:          String{ return _vName }
     var vRights:        String{ return _vRights }
     var vPrice:         String{ return _vPrice }
-    var vCurency:       String{ return _vCurrency }
     var vImageUrl:      String{ return _vImageUrl }
     var vArtist:        String{ return _vArtist }
     var vVideoUrl:      String{ return _vVideoUrl }
@@ -41,7 +39,7 @@ class Videos {
     
         //Video NAme
         if let name = data["im:name"] as? JSONDictionary,
-                vName = name["label"] as? String{
+                vName = name["label"] as? String {
                     self._vName = vName
         } else{
             self._vName = ""
@@ -55,14 +53,10 @@ class Videos {
         }
         
         if let price = data["im:price"] as? JSONDictionary,
-                vPrice = price["attributes"] as? JSONDictionary,
-                prc = vPrice["amount"] as? String,
-                curr = vPrice["currency"] as? String {
+                prc = price["label"] as? String {
                     self._vPrice = prc
-                    self._vCurrency = curr
         } else {
             self._vPrice = ""
-            self._vCurrency = ""
         }
         
         //Video Image

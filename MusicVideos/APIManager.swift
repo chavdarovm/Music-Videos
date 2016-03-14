@@ -22,16 +22,12 @@ class APIManager {
             
             if error != nil {
                     print( error!.localizedDescription )
-//                dispatch_async( dispatch_get_main_queue() ) {
-//                    completion( result: ( error!.localizedDescription ) )
-//                }
             } else {
                 do {
                     if let json = try NSJSONSerialization.JSONObjectWithData(
                                                                         data!,
                                                                         options: .AllowFragments
-                                                                        ) as? JSONDictionary,// {
-                           
+                                                                        ) as? JSONDictionary,
                         feed = json["feed"] as? JSONDictionary,
                         entries = feed["entry"] as? JSONArray {
                         
@@ -43,30 +39,18 @@ class APIManager {
                         
                             let i = videos.count
                             print( "iTunesAPI Manager - total count -> \(i)" )
-                        //print( json )
-                            let priority = DISPATCH_QUEUE_PRIORITY_HIGH
+                            print( "   " )
+                            let priority = DISPATCH_QUEUE_PRIORITY_DEFAULT
                             dispatch_async( dispatch_get_global_queue( priority, 0 ) ) {
                                 dispatch_async( dispatch_get_main_queue() ) {
-                                    completion(videos)//( result: "JSON Serialization successful" )
+                                    completion(videos)
                                 }
-                         //   }
                             }
                     }
                 } catch {
                         print ( "error in JSONSerialization" )
-//                    dispatch_async( dispatch_get_main_queue() ) {
-//                        completion( result: "error in NSJasonSerialization" )
-//                    }
                 }
             }
-//            dispatch_async( dispatch_get_main_queue() ) {
-//                if error != nil {
-//                    completion( result: ( error!.localizedDescription ) )
-//                } else {
-//                    completion( result: "NSURLSession successful" )
-//                    print( data )
-//                }
-//            }
         }
         task.resume()
     }

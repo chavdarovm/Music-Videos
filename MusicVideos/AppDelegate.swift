@@ -8,7 +8,7 @@
 
 import UIKit
 var reachability: Reachability?
-var reachabilityStatus = WIFI
+var reachabilityStatus = " "
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -18,28 +18,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(
             application: UIApplication,
-            didFinishLaunchingWithOptions launchingOptions: [NSObject: AnyObject]?
+            didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?
             ) -> Bool {
                 
-                NSNotificationCenter.defaultCenter().addObserver(
-                    self,
-                    selector: "reachabilityChanged",
-                    name: kReachabilityChangedNotification,
-                    object: nil
-                )
+        NSNotificationCenter.defaultCenter().addObserver(
+            self,
+            selector: "reachabilityChanged:",
+            name: kReachabilityChangedNotification,
+            object: nil
+        )
                 
-                internetCheck = Reachability.reachabilityForInternetConnection()
-                internetCheck?.startNotifier()
-        
-        // Override point for customization after application launch.
-        
-//        NSURLCache.setSharedURLCache( NSURLCache(
-//                                                 memoryCapacity: 0
-//                                                ,diskCapacity: 0
-//                                                ,diskPath: nil
-//                                                )
-//                                    )
-        
+        internetCheck = Reachability.reachabilityForInternetConnection()
+        internetCheck?.startNotifier()
+        statusChangedWithReachability( internetCheck! )
         return true
     }
     
@@ -59,10 +50,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         
         NSNotificationCenter.defaultCenter().postNotificationName(
-            "ReachedStatusChanged",
+            "ReachStatusChanged",
             object: nil
         )
-    }
+    } 
 
     func applicationWillResignActive(application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
