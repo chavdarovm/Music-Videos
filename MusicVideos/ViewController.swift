@@ -38,12 +38,12 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     func didLoadData( videos: [Videos] ) {
     
-        print( reachabilityStatus )
+        //print( reachabilityStatus )
         self.videos = videos
         
-        for ( index, item ) in videos.enumerate() {
-            print( "\( index ) name - \(item.vName)" )
-        }
+        //for ( index, item ) in videos.enumerate() {
+            //print( "\( index ) name - \(item.vName)" )
+        //}
         
         tableView.reloadData()
         
