@@ -38,8 +38,8 @@ class APIManager {
                             }
                         
                             let i = videos.count
-                            print( "iTunesAPI Manager - total count -> \(i)" )
-                            print( "   " )
+                            print( "iTunesAPI Manager - total count -> \(i)" )  //@@
+                            print( "   " )                                      //@@
                             let priority = DISPATCH_QUEUE_PRIORITY_DEFAULT
                             dispatch_async( dispatch_get_global_queue( priority, 0 ) ) {
                                 dispatch_async( dispatch_get_main_queue() ) {

@@ -8,14 +8,18 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
+    @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var displayLabel: UILabel!
     var videos = [Videos]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
     
+        tableView.dataSource = self
+        tableView.delegate = self
+        
         NSNotificationCenter.defaultCenter().addObserver(
             self,
             selector: "reachabilityStatusChanged",
@@ -27,7 +31,7 @@ class ViewController: UIViewController {
         //call API
         let api = APIManager()
         api.loadData(
-                      "https://itunes.apple.com/us/rss/topmusicvideos/limit=10/json"
+                      "https://itunes.apple.com/us/rss/topmusicvideos/limit=50/json"
                       ,completion: didLoadData
                     )
     }
@@ -40,6 +44,8 @@ class ViewController: UIViewController {
         for ( index, item ) in videos.enumerate() {
             print( "\( index ) name - \(item.vName)" )
         }
+        
+        tableView.reloadData()
         
     }
     
@@ -61,5 +67,24 @@ class ViewController: UIViewController {
             name: "ReachStatusChanged",
             object: nil
         )
+    }
+    
+    func numberOfSectionsInTableView(tableView: UITableView) -> Int {// Default is 1 if not implemented
+        return 1
+    }
+
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return videos.count
+    }
+    
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        
+        let cell = tableView.dequeueReusableCellWithIdentifier( "cell", forIndexPath: indexPath )
+        let video = videos[indexPath.row]
+        
+        cell.textLabel?.text = ( "\(indexPath.row + 1)" )
+        cell.detailTextLabel?.text = video.vName
+    
+        return cell
     }
 }
